@@ -24,21 +24,28 @@ class Edit_image extends CI_Controller {
             redirect('login');
         }
     }
-	public function fetch_data()
+	public function index()
 	{
-		$image_id = $this->uri->segment(3);
 		$this->load->model('edit_image_m');
-		$data["image_data"] = $this->edit_image_m->fetch_details($image_id);
+		$this->load->model('view_category_m');
+		$image_id = $this->uri->segment(2);
+		$data["get_cat"] = $this->view_category_m->fetch_details();
+		$data["fetch_image"] = $this->edit_image_m->fetch_details($image_id);
+		$cat_id = $data["fetch_image"]->cat_id;
+		$data['get_album'] = $this->edit_image_m->fetch_album($cat_id);
 		$this->load->view('edit_image',$data);
 	}
-	public function update_image()
+	public function edit_data()
 	{
 		$this->load->model('edit_image_m');
-		$image_id = $this->input->post('image_id');
-		$heading = $this->input->post('heading');
+		$image_id = $this->uri->segment(3);
+		$cat = $this->input->post('cat');
+		$album = $this->input->post('album');
+		$designer_name = $this->input->post('designer_name');
+		$title = $this->input->post('title');
 
 		if(!empty($_FILES['image']['name'])){
-                $config['upload_path'] = 'uploads/';
+                $config['upload_path'] = 'uploads/album_gallery/';
                 $config['allowed_types'] = 'jpg|jpeg|png|gif';
                 $config['file_name'] = rand(999,99999).$_FILES['image']['name'];
                 
@@ -48,24 +55,33 @@ class Edit_image extends CI_Controller {
                 if($this->upload->do_upload('image')){
                     $uploadData = $this->upload->data();
 					$image = $uploadData['file_name'];
-					$records=array('image'=>$image,'heading'=> $heading);
+					$records=array(
+									'cat_id' => $cat,
+									'album_id' => $album,
+									'album_img' => $image,
+									'designer_name' => $designer_name,
+									'title' => $title
+								  );
                 }else{
-                    $image = '';
-					$records=array('heading'=> $heading);
+                   $records=array(
+									'cat_id' => $cat,
+									'album_id' => $album,
+									'designer_name' => $designer_name,
+									'title' => $title
+								 );
                 }
 		}else{
-			$records=array('heading'=> $heading);
+			$records=array(
+							'cat_id' => $cat,
+							'album_id' => $album,
+							'designer_name' => $designer_name,
+							'title' => $title
+						  );
 		}
 
 		$update_data = $this->edit_image_m->update_details($image_id,$records);
-		if($update_data)
-		{
-			$this->session->set_flashdata("success", "Success , Your slider image updated successfully!");
-			redirect('edit_image/fetch_data/'.$image_id);
-		}else{
-			$this->session->set_flashdata("failed", "Something went wrong!");
-			redirect('edit_image/fetch_data/'.$image_id);
-		}
+		$this->session->set_flashdata("success", "Image updated successfully!");
+		redirect('edit_image/'.$image_id);
 		
 	}
 }

@@ -21,12 +21,12 @@
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <div class="pull-left breadcrumb_admin clear_both">
         <div class="pull-left page_title theme_color">
-          <h1>Add Home Page Image</h1>
+          <h1>Add Image</h1>
         </div>
         <div class="pull-right">
           <ol class="breadcrumb">
             <li><a href="javascript:void(0);">Home</a></li>
-            <li><a href="javascript:void(0);">Add Home Page Image</a></li>
+            <li><a href="javascript:void(0);">Add Image</a></li>
           </ol>
         </div>
       </div>
@@ -49,13 +49,31 @@
 		?>
           <div class="block-web">
             <div class="header">
-              <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-              <h3 class="content-header">Home Page Image</h3>
+              <h3 class="content-header">Add Image</h3>
             </div>
             <div class="porlets-content">
 			
-              <form method="POST" action="<?php echo base_url();?>add_image/add_new" enctype="multipart/form-data" parsley-validate novalidate>
-			  <div class="form-group">
+              <form method="POST" action="<?php echo base_url('add_image/add_new');?>" enctype="multipart/form-data">
+			  	<div class="form-group">
+                  <label>Category</label>
+                  <select class="form-control" name="cat" onchange="get_album(this.value);" required>
+					<option>Choose Category</option>
+					<?php
+					foreach($get_cat as $fetch_cat){
+					?>
+					<option value="<?php echo $fetch_cat->category_id;?>"><?php echo $fetch_cat->category_name;?></option>
+					<?php
+					}
+					?>
+				  </select>
+                </div>
+				<div class="form-group">
+                  <label>Album</label>
+                  <select class="form-control album_class" name="album" required>
+					<option selected disabled>Choose Album</option>
+				  </select>
+                </div>
+				<div class="form-group">
 				  <label>Select Image</label>
 				  <div class="fileupload fileupload-new" data-provides="fileupload">
 					  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
@@ -72,10 +90,15 @@
 				  </div>
 				</div>
                 <div class="form-group">
-                  <label>Image heading</label>
-                  <input type="text" name="heading" parsley-trigger="change" required placeholder="Enter Category name" class="form-control">
-                </div><!--/form-group-->
+                  <label>Designer name</label>
+                  <input class="form-control" type="text" name="designer_name"  placeholder="Enter designer name" required>
+                </div>
+				<div class="form-group">
+                  <label>Image Title</label>
+                  <input class="form-control" type="text" name="title"  placeholder="Enter image title" required>
+                </div>
 				<button class="btn btn-primary" type="submit">Submit</button>
+				<button class="btn btn-default" type="reset">Cancel</button>
               </form>
             </div><!--/porlets-content-->
           </div><!--/block-web--> 
@@ -93,7 +116,18 @@
 <?php
    $this->load->view("common/footer");
 ?>
-
+<script>
+	function get_album(cat_id){
+      $.ajax({
+      url: '<?php echo base_url();?>add_image/ajax_fetch_album',
+      data: {'cat_id': cat_id},
+      type: "post",
+      success: function(response){
+        $('.album_class').html(response);
+      }
+      }); 
+    }
+</script>
 
 </body>
 </html>

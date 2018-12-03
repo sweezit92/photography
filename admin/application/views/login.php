@@ -9,6 +9,16 @@
 <link href="<?php echo base_url('css/');?>bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('css/');?>animate.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('css/');?>admin.css" rel="stylesheet" type="text/css" />
+<style>
+.field-icon {
+  float: right;
+  margin-right: 5px;
+  margin-top: -25px;
+  position: relative;
+  font-size:18px;
+  z-index: 2;
+}
+</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -37,7 +47,8 @@
       </div>
       <div class="form-group">
         <div class="col-sm-10">
-          <input type="password" name="password" placeholder="Password" class="form-control" required>
+          <input type="password" name="password" placeholder="Password" class="form-control" id="password-field" required>
+		  <span toggle="#password-field" class="fa fa-eye field-icon toggle-password"></span>
         </div>
       </div>
       <div class="form-group">
@@ -56,5 +67,17 @@
 <script src="<?php echo base_url('js/');?>bootstrap.min.js"></script>
 <script src="<?php echo base_url('js/');?>common-script.js"></script>
 <script src="<?php echo base_url('js/');?>jquery.slimscroll.min.js"></script>
+<script>
+$(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+	input.attr("type", "text");
+  } else {
+	input.attr("type", "password");
+  }
+});
+</script>
 </body>
 </html>

@@ -1,14 +1,14 @@
-<?php 
-	//$category_data = json_decode(json_encode($category_data), True);
-	//print_r($category_data);
-	//exit;
- ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php
    $this->load->view("common/metalinks");
 ?>
+<style>
+#fa{
+	font-size:20px;
+}
+</style>
 </head>
 <body class="light_theme  fixed_header left_nav_fixed">
 <div class="wrapper">
@@ -16,8 +16,9 @@
 <?php
    $this->load->view("common/header");
 ?>
-  <div class="inner">
-    <!--\\\\\\\ inner start \\\\\\-->
+
+	<div class="inner">
+
 <?php
    $this->load->view("common/sidebar");
 ?>
@@ -25,60 +26,61 @@
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <div class="pull-left breadcrumb_admin clear_both">
         <div class="pull-left page_title theme_color">
-          <h1>View Service</h1>
+          <h1>Album Listing</h1>
         </div>
         <div class="pull-right">
           <ol class="breadcrumb">
             <li><a href="javascript:void(0);">Home</a></li>
-            <li><a href="javascript:void(0);">View Service</a></li>
+            <li><a href="javascript:void(0);">Album Listing</a></li>
           </ol>
         </div>
       </div>
       <div class="container clear_both padding_fix">
-        <!--\\\\\\\ container  start \\\\\\-->
+        <!--\\\\\\\ container  start \\\\\\-->    
      
-       <div id="main-content">
-    <div class="page-content">      
        <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
 		<?php
 			if($this->session->flashdata('success')){
 		?>
 			<div class="alert alert-success"> <strong><?php echo $this->session->flashdata('success');?></strong> </div>
 		<?php
 			}
-			if($this->session->flashdata('failed')){
 		?>
-			<div class="alert alert-danger"> <strong><?php echo $this->session->flashdata('failed');?></strong> </div>
-		<?php
-			}
-		?>
-            <section class="panel default blue_title h2">
-              <div class="panel-heading">
-<span class="semi-bold">Service List</span> </div>
-              <div class="panel-body">
+			
+          <div class="block-web">
+            <div class="header">
+              <h3 class="content-header">Album Listing</h3>
+            </div>
+            <div class="porlets-content">
+			
               <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>Sl No</th>
             <th>Category Name</th>
-            <th>Service Name</th>
-			<th>Service Image</th>
-            <th>Action</th>
+            <th>ALbum Title</th>
+            <th>Image</th>
+			<th>Date</th>
+			<th>Action</th>
           </tr>
         </thead>
         <tbody>
 		 <?php 
 			$i = 1;
-			foreach($fetch_service->result() as $row){
+			foreach($get_album as $fetch_album){
 		  ?>
           <tr>
             <td><?php echo $i;?></td>
-            <td><?php echo $row->service_cat_name;?></td>
-			<td><?php echo $row->service_name;?></td>
-            <td><img src="<?php echo base_url();?>uploads/<?php echo $row->service_image; ?>" height="80" width="80"></td>
-            <td><a href="<?php echo base_url();?>edit_service/fetch_data/<?php echo $row->service_id;?>">Edit</a> <a href="<?php echo base_url();?>view_service	/delete_data/<?php echo $row->service_id;?>">Delete</a></td>
+            <td><?php echo $fetch_album->category_name;?></td>
+			<td><?php echo $fetch_album->album_title;?></td>
+			<td><img src="<?php echo base_url('uploads/album_cover/');?><?php echo $fetch_album->album_cover;?>" style="height:100px;"></td>
+            <td><?php echo date('d/m/Y',$fetch_album->album_date);?></td>
+            <td>
+				<a href="<?php echo base_url('edit_album/');?><?php echo $fetch_album->album_id;?>" title="Edit"><i id="fa" class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="<?php echo base_url('view_album/delete_data/');?><?php echo $fetch_album->album_id;?>" title="Delete"><i id="fa" class="fa fa-minus-circle" style="color:red;"></i></a>
+			</td>
           </tr>
 		  <?php
 			$i++;
@@ -87,16 +89,10 @@
         </tbody>
       </table>
     </div>
-              </div>
-              </section>
-              </div>
+            </div><!--/porlets-content-->
+          </div><!--/block-web--> 
+        </div><!--/col-md-6--> 
       </div><!--/row-->
-
-      
-        </div><!--/page-content end--> 
-  </div><!--/main-content end--> 
-      
-  
       </div>
       <!--\\\\\\\ container  end \\\\\\-->
     </div>
@@ -109,6 +105,7 @@
 <?php
    $this->load->view("common/footer");
 ?>
+
 
 </body>
 </html>

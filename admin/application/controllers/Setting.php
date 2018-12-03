@@ -24,6 +24,7 @@ class Setting extends CI_Controller {
             redirect('login');
         }
     }
+
 	public function index()
 	{
 		$this->load->model('setting_m');

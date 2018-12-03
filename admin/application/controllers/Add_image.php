@@ -24,45 +24,71 @@ class Add_image extends CI_Controller {
             redirect('login');
         }
     }
+
 	public function index()
 	{
-		$this->load->view('add_image');
+		$this->load->model('view_category_m');
+		$data["get_cat"] = $this->view_category_m->fetch_details();
+		$this->load->view('add_image',$data);
 	}
+
+	public function ajax_fetch_album()
+	{
+		$this->load->model('add_image_m');
+		$cat_id = $this->input->post("cat_id");
+		$get_album = $this->add_image_m->fetch_album($cat_id);
+	?>
+		<option selected disabled>Choose Album</option>
+	<?php
+		foreach($get_album as $fetch_album){
+	?>
+		<option value="<?php echo $fetch_album->album_id;?>"><?php echo $fetch_album->album_title;?></option>
+	<?php
+		}
+	}
+
 	public function add_new()
 	{
 		$this->load->model('add_image_m');
 
-		$heading = $this->input->post('heading');
+		$cat = $this->input->post('cat');
+		$album = $this->input->post('album');
+		$designer_name = $this->input->post('designer_name');
+		$title = $this->input->post('title');
+		$date = time();
 
 		if(!empty($_FILES['image']['name'])){
-                $config['upload_path'] = 'uploads/';
-                $config['allowed_types'] = 'jpg|jpeg|png|gif';
-                $config['file_name'] = rand(999,99999).$_FILES['image']['name'];
-                
-                $this->load->library('upload',$config);
-                $this->upload->initialize($config);
-                
-                if($this->upload->do_upload('image')){
-                    $uploadData = $this->upload->data();
-					$image = $uploadData['file_name'];
-					$records=array('image'=>$image,'heading'=> $heading);
-                }else{
-                    $image = '';
-					$records=array('heading'=>$heading);
-                }
-		}else{
-			$records=array('heading'=>$heading);
-		}
-
-		$insert_data = $this->add_image_m->insert_image($records);
-		if($insert_data)
-		{
-			$this->session->set_flashdata("success", "Service category created successfully!");
-			redirect('add_image');	
+			$config['upload_path'] = 'uploads/album_gallery/';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$config['file_name'] = rand(999,99999).$_FILES['image']['name'];
+			
+			$this->load->library('upload',$config);
+			$this->upload->initialize($config);
+			
+			if($this->upload->do_upload('image')){
+				 $uploadData = $this->upload->data();
+				 $image = $uploadData['file_name'];
+				
+			}else{
+				$image = '';
+			}
 		}
 		else{
-			$this->session->set_flashdata("failed", "Something went wrong!");
-			redirect('add_image');	
+			$image = '';
 		}
+
+		$insert_array = array(
+								'cat_id' => $cat,
+								'album_id' => $album,
+								'album_img' => $image,
+								'designer_name' => $designer_name,
+								'title' => $title,
+								'image_date' => $date,
+							 );
+
+
+		$insert_data = $this->add_image_m->insert_image($insert_array);
+		$this->session->set_flashdata("success", "Image uploaded successfully!");
+		redirect('add_image');	
 	}
 }

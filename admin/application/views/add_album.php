@@ -21,12 +21,12 @@
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <div class="pull-left breadcrumb_admin clear_both">
         <div class="pull-left page_title theme_color">
-          <h1>Add Service</h1>
+          <h1>Add Album</h1>
         </div>
         <div class="pull-right">
           <ol class="breadcrumb">
             <li><a href="javascript:void(0);">Home</a></li>
-            <li><a href="javascript:void(0);">Add Service</a></li>
+            <li><a href="javascript:void(0);">Add Album</a></li>
           </ol>
         </div>
       </div>
@@ -41,22 +41,31 @@
 			<div class="alert alert-success"> <strong><?php echo $this->session->flashdata('success');?></strong> </div>
 		<?php
 			}
-			if($this->session->flashdata('failed')){
 		?>
-			<div class="alert alert-danger"> <strong><?php echo $this->session->flashdata('failed');?></strong> </div>
-		<?php
-			}
-		?>
+			
           <div class="block-web">
             <div class="header">
-              <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-              <h3 class="content-header">Service Details</h3>
+              <h3 class="content-header">Album</h3>
             </div>
             <div class="porlets-content">
 			
-              <form method="POST" action="<?php echo base_url();?>add_service/add_new" enctype="multipart/form-data" parsley-validate novalidate>
+              <form method="POST" action="<?php echo base_url('add_album/create_album');?>" enctype="multipart/form-data">
 			  <div class="form-group">
-				  <label>Select Image</label>
+                  <label>Album Ctegory</label>
+                  <select class="form-control" name="album_cat" required>
+				  	  <option selected disabled>Choose Category</option>
+				  <?php
+				  foreach($get_cat as $fetch_cat)
+				  {
+				  ?>
+					  <option value="<?php echo $fetch_cat->category_id;?>"><?php echo $fetch_cat->category_name;?></option>
+				  <?php
+				  }
+				  ?>
+				  </select>
+                </div>
+			  <div class="form-group">
+				  <label>Select Album Cover</label>
 				  <div class="fileupload fileupload-new" data-provides="fileupload">
 					  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 						  <img style="height:150px;" src= "http://via.placeholder.com/190x140" alt="">
@@ -71,28 +80,12 @@
 					  </div> 
 				  </div>
 				</div>
-				<div class="form-group">
-                  <label>Select Category</label>
-                    <select class="form-control" name="service_cat" id="source">
-						<option selected disabled>Choose A Category...</option>
-					<?php
-					foreach($fetch_cat->result() as $row){
-					?>
-                      <option value="<?php echo $row->service_cat_id;?>"> <?php echo $row->service_cat_name;?> </option>
-					<?php
-			  }
-					?>
-                    </select>
-                </div>
                 <div class="form-group">
-                  <label>Service Name</label>
-                  <input type="text" name="service_name" parsley-trigger="change" required placeholder="Enter Service name" class="form-control">
-                </div>
-				<div class="form-group">
-                    <label>Service Details</label>
-                      <textarea class="form-control ckeditor" name="servive_details" rows="6"></textarea>
-                  </div><!--/form-group-->
+                  <label>Album Title</label>
+                  <input class="form-control" type="text" name="album_title"  placeholder="Enter Category name"  required>
+                </div><!--/form-group-->
 				<button class="btn btn-primary" type="submit">Submit</button>
+				<button class="btn btn-default" type="reset">Cancel</button>
               </form>
             </div><!--/porlets-content-->
           </div><!--/block-web--> 

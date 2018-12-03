@@ -8,14 +8,29 @@
 
 class View_image_m extends CI_Model 
 {
-	public function fetch_images()
+	public function get_image()
 	{
-		$query = $this->db->query("select * from home_page_slider order by 	id desc");
-		return $query;
+		$this->db->select('*');
+		$this->db->from('album_image a'); 
+		$this->db->join('album b', 'b.album_id=a.album_id', 'left');
+		$this->db->join('category c', 'c.category_id=a.cat_id', 'left');
+		$query = $this->db->get();
+		return $query->result();
 	}
-	public function delete_slider($image_id)
+
+	public function get_image_name($image_id)
 	{
-		$query = $this->db->query("delete from home_page_slider where id='".$image_id."'");
+		$this->db->select('*');
+		$this->db->from('album_image a'); 
+		$this->db->where('album_image_id', $image_id);
+		$query = $this->db->get();
+		return $query->row();
+	}
+
+	public function delete_image($image_id)
+	{
+		$this->db->where('album_image_id', $image_id);
+		$this->db->delete('album_image');
 		return true;
 	}
 }

@@ -5,7 +5,7 @@
    $this->load->view("common/metalinks");
 ?>
 <style>
-.fa{
+#fa{
 	font-size:20px;
 }
 </style>
@@ -26,7 +26,7 @@
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <div class="pull-left breadcrumb_admin clear_both">
         <div class="pull-left page_title theme_color">
-          <h1>Add Category</h1>
+          <h1>Category Listing</h1>
         </div>
         <div class="pull-right">
           <ol class="breadcrumb">
@@ -59,36 +59,36 @@
             <div class="porlets-content">
 			
               <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Sl No</th>
-            <th>Category Name</th>
-            <th>date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-		 <?php 
-			$i = 1;
-			foreach($fetch_details as $fetch_cat){
-		  ?>
-          <tr>
-            <td><?php echo $i;?></td>
-            <td><?php echo $fetch_cat->category_name;?></td>
-            <td><?php echo date('d/m/Y',$fetch_cat->date);?></td>
-            <td>
-				<a href="<?php echo base_url('edit_category/');?><?php echo $fetch_cat->category_id;?>" title="Edit"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<?php echo base_url('view_category/delete_data/');?><?php echo $fetch_cat->category_id;?>" title="Delete"><i class="fa fa-minus-circle" style="color:red;"></i></a>
-			</td>
-          </tr>
-		  <?php
-			$i++;
-			}
-		  ?>
-        </tbody>
-      </table>
-    </div>
+				  <table class="table table-bordered">
+					<thead>
+					  <tr>
+						<th>Sl No</th>
+						<th>Category Name</th>
+						<th>date</th>
+						<th>Action</th>
+					  </tr>
+					</thead>
+					<tbody>
+					 <?php 
+						$i = 1;
+						foreach($fetch_details as $fetch_cat){
+					  ?>
+					  <tr>
+						<td><?php echo $i;?></td>
+						<td><?php echo $fetch_cat->category_name;?></td>
+						<td><?php echo date('d/m/Y',$fetch_cat->date);?></td>
+						<td>
+							<a href="<?php echo base_url('edit_category/');?><?php echo $fetch_cat->category_id;?>" title="Edit"><i id="fa" class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="<?php echo base_url('view_category/delete_data/');?><?php echo $fetch_cat->category_id;?>" title="Delete"><i id="fa" class="fa fa-minus-circle" style="color:red;"></i></a>
+						</td>
+					  </tr>
+					  <?php
+						$i++;
+						}
+					  ?>
+					</tbody>
+				  </table>
+				</div>
             </div><!--/porlets-content-->
           </div><!--/block-web--> 
         </div><!--/col-md-6--> 

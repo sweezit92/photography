@@ -53,3 +53,5 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['edit_category/(:num)'] = "edit_category";
+$route['edit_image/(:num)'] = "edit_image";
+$route['edit_album/(:num)'] = "edit_album";

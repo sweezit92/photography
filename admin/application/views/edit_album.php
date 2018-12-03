@@ -21,12 +21,12 @@
       <!--\\\\\\\ contentpanel start\\\\\\-->
       <div class="pull-left breadcrumb_admin clear_both">
         <div class="pull-left page_title theme_color">
-          <h1>About Us</h1>
+          <h1>Edit Album</h1>
         </div>
         <div class="pull-right">
           <ol class="breadcrumb">
             <li><a href="javascript:void(0);">Home</a></li>
-            <li><a href="javascript:void(0);">About Us</a></li>
+            <li><a href="javascript:void(0);">Edit Album</a></li>
           </ol>
         </div>
       </div>
@@ -41,77 +41,45 @@
 			<div class="alert alert-success"> <strong><?php echo $this->session->flashdata('success');?></strong> </div>
 		<?php
 			}
-			if($this->session->flashdata('failed')){
 		?>
-			<div class="alert alert-danger"> <strong><?php echo $this->session->flashdata('failed');?></strong> </div>
-		<?php
-			}
-		?>
+			
           <div class="block-web">
             <div class="header">
-              <div class="actions"> <a class="minimize" href="#"><i class="fa fa-chevron-down"></i></a><a class="close-down" href="#"><i class="fa fa-times"></i></a> </div>
-              <h3 class="content-header">About Us Details</h3>
+              <h3 class="content-header">Album</h3>
             </div>
-
-
-            <?php
-			foreach($fetch_data->result() as $row){
-			?>
-			<div class="porlets-content" id="details_div" >
-			  <div class="form-group">
-				  <label>Select Image</label>
-				  <div class="fileupload fileupload-new" data-provides="fileupload">
-					  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-					  <?php
-						if($row->about_us_image == '')
-						{
-						?>
-							<img style="height:150px;" src= "http://via.placeholder.com/190x140" alt="">
-						<?php
-						}
-						else{
-						?>
-							<img style="height:150px;" src= "<?php echo base_url();?>uploads/<?php echo $row->about_us_image;?>" alt="">
-						<?php
-						}
-					  ?>
-						  
-					  </div>
-				  </div>
-				</div>
-				<div class="form-group">
-                    <label><b>About Us Details :</b> <?php echo $row->about_us_details;?></label>
-                  </div><!--/form-group-->
-				<a class="btn btn-primary" href="javascipt:void(0);" onclick="edit_this()">Edit</a>
-            </div><!--/porlets-content-->
-			<?php
-			}
-			?>
-
-
-
+            <div class="porlets-content">
 			
-			<?php
-			foreach($fetch_data->result() as $row){
-			?>
-			<div class="porlets-content" style="display:none;" id="edit_div">
-              <form method="POST" action="<?php echo base_url();?>about_us/update_details" enctype="multipart/form-data" parsley-validate novalidate>
+              <form method="POST" action="<?php echo base_url('edit_album/update_data/');?><?php echo $this->uri->segment(2);?>" enctype="multipart/form-data">
 			  <div class="form-group">
-				  <label>Select Image</label>
+                  <label>Album Ctegory</label>
+                  <select class="form-control" name="album_cat" required>
+				  	  <option selected disabled>Choose Category</option>
+				  <?php
+				  foreach($get_cat as $fetch_cat)
+				  {
+				  ?>
+					  <option value="<?php echo $fetch_cat->category_id;?>" <?php echo (($fetch_cat->category_id == $fetch_album->cat_id)?'selected':'');?>><?php echo $fetch_cat->category_name;?></option>
+				  <?php
+				  }
+				  ?>
+				  </select>
+                </div>
+			  <div class="form-group">
+				  <label>Select Album Cover</label>
 				  <div class="fileupload fileupload-new" data-provides="fileupload">
 					  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 					  <?php
-					  if($row->about_us_image =='')
+					  if($fetch_album->album_cover != '')
 					  {
 					  ?>
-						  <img style="height:150px;" src= "http://via.placeholder.com/190x140" alt="">
-					   <?php
+						  <img style="height:150px;" src= "<?php echo base_url('uploads/album_cover/');?><?php echo $fetch_album->album_cover;?>" alt="">
+					  <?php
 					  }else{
-					   ?>
-						  <img style="height:150px;" src= "<?php echo base_url();?>uploads/<?php echo $row->about_us_image; ?>" alt="">
-					   <?php
+					  ?>
+						  <img style="height:150px;" src= "http://via.placeholder.com/190x140" alt="">
+					  <?php
 					  }
-					   ?>
+					  ?>
 					  </div>
 					  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
 					  <div>
@@ -123,22 +91,14 @@
 					  </div> 
 				  </div>
 				</div>
-				
-				<div class="form-group">
-                    <label>Service Details</label>
-                      <textarea class="form-control ckeditor" name="about_us_details" rows="6"><?php echo $row->about_us_details;?></textarea>
-                  </div><!--/form-group-->
+                <div class="form-group">
+                  <label>Album Title</label>
+                  <input class="form-control" type="text" name="album_title"  value="<?php echo $fetch_album->album_title;?>"  required>
+                </div><!--/form-group-->
 				<button class="btn btn-primary" type="submit">Submit</button>
+				<button class="btn btn-default" type="reset">Cancel</button>
               </form>
             </div><!--/porlets-content-->
-			<?php
-			}
-			?>
-
-
-
-
-
           </div><!--/block-web--> 
         </div><!--/col-md-6--> 
       </div><!--/row-->
@@ -154,12 +114,6 @@
 <?php
    $this->load->view("common/footer");
 ?>
-<script>
-function edit_this(){
-	$("#edit_div").show();
-	$("#details_div").hide();
-}
-</script>
 
 
 </body>
