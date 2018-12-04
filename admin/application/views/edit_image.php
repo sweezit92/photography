@@ -107,14 +107,6 @@
 					  </div> 
 				  </div>
 				</div>
-                <div class="form-group">
-                  <label>Designer name</label>
-                  <input class="form-control" type="text" name="designer_name"  value="<?php echo $fetch_image->designer_name;?>" required>
-                </div>
-				<div class="form-group">
-                  <label>Image Title</label>
-                  <input class="form-control" type="text" name="title"  value="<?php echo $fetch_image->title;?>" required>
-                </div>
 				<button class="btn btn-primary" type="submit">Submit</button>
 				<button class="btn btn-default" type="reset">Cancel</button>
               </form>

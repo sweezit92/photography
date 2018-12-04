@@ -66,8 +66,6 @@
 						<th>Category Name</th>
 						<th>Album Name</th>
 						<th>Image</th>
-						<th>Title</th>
-						<th>Designer name</th>
 						<th>date</th>
 						<th>Action</th>
 					  </tr>
@@ -82,8 +80,6 @@
 						<td><?php echo $fetch_image->category_name;?></td>
 						<td><?php echo $fetch_image->album_title;?></td>
 						<td><img src="<?php echo base_url('uploads/album_gallery/');?><?php echo $fetch_image->album_img;?>" style="height:100px;"></td>
-						<td><?php echo $fetch_image->title;?></td>
-						<td><?php echo $fetch_image->designer_name	;?></td>
 						<td><?php echo date('d/m/Y',$fetch_image->date);?></td>
 						<td>
 							<a href="<?php echo base_url('edit_image/');?><?php echo $fetch_image->album_image_id;?>" title="Edit"><i id="fa" class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;

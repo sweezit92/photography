@@ -22,6 +22,7 @@ class Add_album extends CI_Controller {
 		$this->load->model('add_album_m');
 		$album_cat = $this->input->post('album_cat');
 		$album_title = $this->input->post('album_title');
+		$album_descp = $this->input->post('album_descp');
 		$date = time();
 		if(!empty($_FILES['image']['name'])){
 			$config['upload_path'] = 'uploads/album_cover/';
@@ -47,6 +48,7 @@ class Add_album extends CI_Controller {
 								'album_cover' => $image,
 								'album_thumb' => '',
 								'album_title' => $album_title,
+								'album_description' => $album_descp,
 								'album_date' => $date
 							 );
 		$insert_album = $this->add_album_m->insert_album($insert_array);

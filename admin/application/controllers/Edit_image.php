@@ -41,8 +41,6 @@ class Edit_image extends CI_Controller {
 		$image_id = $this->uri->segment(3);
 		$cat = $this->input->post('cat');
 		$album = $this->input->post('album');
-		$designer_name = $this->input->post('designer_name');
-		$title = $this->input->post('title');
 
 		if(!empty($_FILES['image']['name'])){
                 $config['upload_path'] = 'uploads/album_gallery/';
@@ -58,24 +56,18 @@ class Edit_image extends CI_Controller {
 					$records=array(
 									'cat_id' => $cat,
 									'album_id' => $album,
-									'album_img' => $image,
-									'designer_name' => $designer_name,
-									'title' => $title
+									'album_img' => $image
 								  );
                 }else{
                    $records=array(
 									'cat_id' => $cat,
-									'album_id' => $album,
-									'designer_name' => $designer_name,
-									'title' => $title
+									'album_id' => $album
 								 );
                 }
 		}else{
 			$records=array(
 							'cat_id' => $cat,
-							'album_id' => $album,
-							'designer_name' => $designer_name,
-							'title' => $title
+							'album_id' => $album
 						  );
 		}
 

@@ -53,8 +53,6 @@ class Add_image extends CI_Controller {
 
 		$cat = $this->input->post('cat');
 		$album = $this->input->post('album');
-		$designer_name = $this->input->post('designer_name');
-		$title = $this->input->post('title');
 		$date = time();
 
 		if(!empty($_FILES['image']['name'])){
@@ -81,9 +79,7 @@ class Add_image extends CI_Controller {
 								'cat_id' => $cat,
 								'album_id' => $album,
 								'album_img' => $image,
-								'designer_name' => $designer_name,
-								'title' => $title,
-								'image_date' => $date,
+								'image_date' => $date
 							 );
 
 

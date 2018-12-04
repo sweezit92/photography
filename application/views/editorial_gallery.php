@@ -36,36 +36,6 @@
                     				<img src="<?php echo base_url('images/');?>WEBPAGE-3.jpg" alt="slider" />
                     			</a>
                     		</li>
-                    		<li>
-                    			<a>
-                    				<img src="<?php echo base_url('images/');?>WEBPAGE-6.jpg" alt="slider" />
-                    			</a>
-                    		</li>
-                    		<li>
-                    			<a>
-                    				<img src="<?php echo base_url('images/');?>PAGE-2-3.jpg" alt="slider" />
-                    			</a>
-                    		</li>
-							<li>
-                    			<a>
-                    				<img src="<?php echo base_url('images/');?>IMAGE_2.jpg" alt="slider" />
-                    			</a>
-                    		</li>
-							<li>
-                    			<a>
-                    				<img src="<?php echo base_url('images/');?>FW-SG-00001_f.JPG" alt="slider" />
-                    			</a>
-                    		</li>
-							<li>
-                    			<a>
-                    				<img src="<?php echo base_url('images/');?>PAGE-3-2.jpg" alt="slider" />
-                    			</a>
-                    		</li>
-							<li>
-                    			<a>
-                    				<img src="<?php echo base_url('images/');?>CG-003437.JPG" alt="slider" />
-                    			</a>
-                    		</li>
                     	</ul>
                     </div>
                     <!--Slider Image End-->

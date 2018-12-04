@@ -43,12 +43,20 @@
             <!--Navigation Menu Start-->
             <ul class="flexy-menu thick" style="margin-right:-110px;">
             	<li class="<?php echo (($this->uri->segment(1) == 'home' || $this->uri->segment(1) == '')?'active':'');?>"><a href="<?php echo base_url('home');?>">Home</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'editorial_album')?'active':'');?>"><a href="<?php echo base_url('editorial_album');?>">Editorial Fashion</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'editorial_album')?'active':'');?>"><a href="<?php echo base_url('editorial_album');?>">Portrait</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'editorial_album')?'active':'');?>"><a href="<?php echo base_url('editorial_album');?>">Stories</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'editorial_album')?'active':'');?>"><a href="<?php echo base_url('editorial_album');?>">Travel Dairies</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'editorial_album')?'active':'');?>"><a href="<?php echo base_url('editorial_album');?>">Advertising</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'editorial_album')?'active':'');?>"><a href="<?php echo base_url('editorial_album');?>">Motion</a><div class="arrow-down"></div></li>
+				
+				<?php
+				 $ci =&get_instance();
+				 $ci->load->model('fetch_cat_m');
+				 $get_cat = $ci->fetch_cat_m->get_all_cat();
+				 foreach($get_cat as $fetch_cat){
+					
+				?>
+				<li class="<?php echo (($this->uri->segment(2) == $fetch_cat->category_id)?'active':'');?>"><a href="<?php echo base_url('editorial_album/');?><?php echo $fetch_cat->category_id;?>"><?php echo $fetch_cat->category_name;?></a><div class="arrow-down"></div></li>
+				<?php
+				 }
+				?>
+				
+				
 				<li class="<?php echo (($this->uri->segment(1) == 'about')?'active':'');?>"><a href="<?php echo base_url('about');?>">About</a><div class="arrow-down"></div></li>
 				<li class="<?php echo (($this->uri->segment(1) == 'contact')?'active':'');?>"><a href="<?php echo base_url('contact');?>">Contact</a><div class="arrow-down"></div></li>
 				<!--<li class=""><a href="terms.php">Legal Terms</a><div class="arrow-down"></div></li>-->

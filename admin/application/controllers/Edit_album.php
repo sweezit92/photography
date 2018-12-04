@@ -26,6 +26,7 @@ class Edit_album extends CI_Controller {
 		$album_id = $this->uri->segment(3);
 		$album_cat = $this->input->post('album_cat');
 		$album_title = $this->input->post('album_title');
+		$album_descp = $this->input->post('album_descp');
 
 		if(!empty($_FILES['image']['name'])){
                 $config['upload_path'] = 'uploads/album_cover/';
@@ -41,18 +42,21 @@ class Edit_album extends CI_Controller {
 					$records=array(
 									'cat_id' => $album_cat,
 									'album_cover' => $image,
-									'album_title' => $album_title
+									'album_title' => $album_title,
+									'album_description' => $album_descp
 								  );
                 }else{
                    $records=array(
 									'cat_id' => $album_cat,
-									'album_cover' => $image,
+					   				'album_title' => $album_title,
+									'album_description' => $album_descp
 								 );
                 }
 		}else{
 			$records=array(
 							'cat_id' => $album_cat,
-						    'album_cover' => $image,
+							'album_title' => $album_title,
+							'album_description' => $album_descp
 						  );
 		}
 

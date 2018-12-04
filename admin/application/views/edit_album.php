@@ -94,6 +94,10 @@
                 <div class="form-group">
                   <label>Album Title</label>
                   <input class="form-control" type="text" name="album_title"  value="<?php echo $fetch_album->album_title;?>"  required>
+                </div>
+				<div class="form-group">
+                  <label>Album Description</label>
+                  <textarea class="form-control" name="album_descp"  required><?php echo $fetch_album->album_description;?></textarea>
                 </div><!--/form-group-->
 				<button class="btn btn-primary" type="submit">Submit</button>
 				<button class="btn btn-default" type="reset">Cancel</button>

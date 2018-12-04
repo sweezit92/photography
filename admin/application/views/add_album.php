@@ -82,7 +82,11 @@
 				</div>
                 <div class="form-group">
                   <label>Album Title</label>
-                  <input class="form-control" type="text" name="album_title"  placeholder="Enter Category name"  required>
+                  <input class="form-control" type="text" name="album_title"  placeholder="Enter album title"  required>
+                </div>
+				<div class="form-group">
+                  <label>Album Description</label>
+                  <textarea class="form-control" name="album_descp"  placeholder="Enter album description"  required></textarea>
                 </div><!--/form-group-->
 				<button class="btn btn-primary" type="submit">Submit</button>
 				<button class="btn btn-default" type="reset">Cancel</button>
