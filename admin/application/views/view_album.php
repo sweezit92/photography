@@ -76,7 +76,19 @@
             <td><?php echo $i;?></td>
             <td><?php echo $fetch_album->category_name;?></td>
 			<td><?php echo $fetch_album->album_title;?></td>
-			<td><?php echo $fetch_album->album_description;?></td>
+			<td>
+			  <?php
+				$length = strlen($fetch_album->album_description);
+		  		if($length > 100)
+				{
+					echo substr($fetch_album->album_description,0,100);
+					echo "...";
+				}else{
+					echo $fetch_album->album_description;
+				}
+				
+			  ?>
+			</td>
 			<td><img src="<?php echo base_url('uploads/album_cover/');?><?php echo $fetch_album->album_cover;?>" style="height:100px;"></td>
             <td><?php echo date('d/m/Y',$fetch_album->album_date);?></td>
             <td>

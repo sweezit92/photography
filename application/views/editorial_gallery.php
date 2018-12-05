@@ -52,11 +52,11 @@
 
                     <!--Details Start-->
                     <aside class="portfolio-details">
-                    	<h1>Title Title Title Title Title</h1>
-                        <div class="portfolio-tag">
+                    	<h1><?php echo $get_album->album_title;?> </h1>
+                        <div class="portfolio-tag"  style="width:900px;">
                         	<ul>
-                            	<li>Designer: <span>Designer name</span></li>
-                                <li>Date: <span>20 December 2013</span></li>
+                            	<li>Description: <span><?php echo $get_album->album_description;?></span></li>
+                                <li>Date: <span><?php echo date('d/m/Y',$get_album->album_date);?></span></li>
                             </ul>
                         </div>
                     </aside>

@@ -37,11 +37,11 @@
     	<div class="wrapper header">
         	
             <div class="logo">
-            	<!-- <a href="index.html"><img src="images/logo.png" alt="logo" /></a> --><h1 style="margin-top:22px;color:white;margin-left:-50px;">LOGO</h1>
+            	<a href="#"><img src="<?php echo base_url('images/');?>Imagezs-logo-for-web-transparent.png" alt="logo" style="height:60px;"/></a><!-- <h1 style="margin-top:22px;color:white;margin-left:-50px;">LOGO</h1> -->
             </div>
             
             <!--Navigation Menu Start-->
-            <ul class="flexy-menu thick" style="margin-right:-110px;">
+            <ul class="flexy-menu thick">
             	<li class="<?php echo (($this->uri->segment(1) == 'home' || $this->uri->segment(1) == '')?'active':'');?>"><a href="<?php echo base_url('home');?>">Home</a><div class="arrow-down"></div></li>
 				
 				<?php
@@ -55,11 +55,6 @@
 				<?php
 				 }
 				?>
-				
-				
-				<li class="<?php echo (($this->uri->segment(1) == 'about')?'active':'');?>"><a href="<?php echo base_url('about');?>">About</a><div class="arrow-down"></div></li>
-				<li class="<?php echo (($this->uri->segment(1) == 'contact')?'active':'');?>"><a href="<?php echo base_url('contact');?>">Contact</a><div class="arrow-down"></div></li>
-				<!--<li class=""><a href="terms.php">Legal Terms</a><div class="arrow-down"></div></li>-->
             </ul>
             <!--Navigation Menu End-->
             

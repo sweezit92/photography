@@ -11,7 +11,6 @@ class Editorial_album_m extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
-
 }
 
 /* End of file Edit_album_m.php */

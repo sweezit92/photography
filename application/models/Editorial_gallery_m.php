@@ -11,6 +11,14 @@ class Editorial_gallery_m extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function fetch_album($album_id)
+	{
+		$this->db->select('*');
+		$this->db->from('album');
+		$this->db->where('album_id', $album_id);
+		$query = $this->db->get();
+		return $query->row();
+	}
 
 }
 
