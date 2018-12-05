@@ -32,7 +32,7 @@
 
 <!--Flexy Menu Script-->
 <script type="text/javascript" src="<?php echo base_url('js/');?>flexy-menu.js"></script>
-<script type="text/javascript" src="js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="<?php echo base_url('js/');?>jquery.flexslider.js"></script>
 
 <!-- MEGAFOLIO PRO GALLERY JS FILES -->
 <script type="text/javascript" src="<?php echo base_url('js/');?>jquery.themepunch.tools.min.js"></script>

@@ -31,11 +31,17 @@
                     <!--Slider Image-->
                     <div class="flexslider">
                     	<ul class="slides">
+						<?php
+						foreach($get_gallery as $fetch_gallery ){
+						?>
                     		<li>
                     			<a>
-                    				<img src="<?php echo base_url('images/');?>WEBPAGE-3.jpg" alt="slider" />
+                    				<img src="<?php echo base_url('admin/uploads/album_gallery/');?><?php echo $fetch_gallery->album_img;?>" alt="slider" />
                     			</a>
                     		</li>
+						<?php
+						}
+						?>
                     	</ul>
                     </div>
                     <!--Slider Image End-->

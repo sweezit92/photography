@@ -7,7 +7,7 @@ class Editorial_gallery extends CI_Controller {
 	{
 		$this->load->model('editorial_gallery_m');
 		$album_id = $this->uri->segment(2);
-		$data['fetch_gallery'] = $this->editorial_gallery_m->fetch_gallery_img($album_id);
+		$data['get_gallery'] = $this->editorial_gallery_m->fetch_gallery_img($album_id);
 		$this->load->view('editorial_gallery',$data);
 	}
 
